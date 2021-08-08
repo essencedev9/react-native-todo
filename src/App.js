@@ -49,6 +49,12 @@ export default function App() {
     setTasks(currentTasks);
   };
 
+  const toggleTask = id => {
+    const currentTasks = Object.assign({}, tasks);
+    currentTasks[id]['compledted'] = !currentTasks[id]['compledted'];
+    setTasks(currentTasks);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
@@ -67,7 +73,12 @@ export default function App() {
           {Object.values(tasks)
             .reverse()
             .map(item => (
-              <Task key={item.id} item={item} deleteTask={deleteTask} />
+              <Task
+                key={item.id}
+                item={item}
+                deleteTask={deleteTask}
+                toggleTask={toggleTask}
+              />
             ))}
         </List>
       </Container>
