@@ -21,6 +21,11 @@ const Title = styled.Text`
   padding: 0 20px;
 `;
 
+const List = styled.ScrollView`
+  flex: 1;
+  width: 100%;
+`;
+
 export default function App() {
   const [newTask, setNewTask] = useState('');
   const addTask = () => {
@@ -42,7 +47,21 @@ export default function App() {
           onChangeText={text => setNewTask(text)}
           onSubmitEditing={addTask}
         />
-        <Task text="React Native" />
+        <List>
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+          <Task text="React Native" />
+        </List>
       </Container>
     </ThemeProvider>
   );
