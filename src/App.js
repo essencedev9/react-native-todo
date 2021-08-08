@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, Dimensions } from 'react-native';
 import styled, { ThemeProvider } from 'styled-components/native';
 import { theme } from './theme';
 import Input from './components/Input';
@@ -23,10 +23,11 @@ const Title = styled.Text`
 
 const List = styled.ScrollView`
   flex: 1;
-  width: 100%;
+  width: ${({ width }) => width - 40}px;
 `;
 
 export default function App() {
+  const width = Dimensions.get('window').width;
   const [newTask, setNewTask] = useState('');
   const addTask = () => {
     alert(newTask);
@@ -47,7 +48,7 @@ export default function App() {
           onChangeText={text => setNewTask(text)}
           onSubmitEditing={addTask}
         />
-        <List>
+        <List width={width}>
           <Task text="React Native" />
           <Task text="React Native" />
           <Task text="React Native" />
