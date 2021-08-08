@@ -4,8 +4,20 @@ import PropTypes from 'prop-types';
 import IconButton from './IconButton';
 import { icons } from '../icons';
 
-const Container = styled.View``;
-const Contents = styled.Text``;
+const Container = styled.View`
+  flex-direction: row;
+  align-items: center;
+  background-color: ${({ theme }) => theme.itemBackground};
+  border-radius: 10px;
+  padding: 5px;
+  margin: 3px 0%;
+`;
+
+const Contents = styled.Text`
+  flex: 1;
+  font-size: 24px;
+  color: ${({ theme }) => theme.text};
+`;
 
 const Task = ({ text }) => {
   return (
