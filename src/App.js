@@ -22,6 +22,10 @@ const Title = styled.Text`
 
 export default function App() {
   const [newTask, setNewTask] = useState('');
+  const addTask = () => {
+    alert(newTask);
+    setNewTask('');
+  };
   return (
     <ThemeProvider theme={theme}>
       <Container>
@@ -34,6 +38,7 @@ export default function App() {
           placeholder="+ Add a Task"
           value={newTask}
           onChangeText={text => setNewTask(text)}
+          onSubmitEditing={addTask}
         />
       </Container>
     </ThemeProvider>

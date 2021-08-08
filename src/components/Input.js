@@ -16,7 +16,7 @@ const StyledInput = styled.TextInput.attrs(({ theme }) => ({
   color: ${({ theme }) => theme.text};
 `;
 
-const Input = ({ placeholder, value, onChangeText }) => {
+const Input = ({ placeholder, value, onChangeText, onSubmitEditing }) => {
   // const width = Dimensions.get('window').width;
   const width = useWindowDimensions().width;
   return (
@@ -30,6 +30,7 @@ const Input = ({ placeholder, value, onChangeText }) => {
       keyboardAppearance="dark"
       value={value}
       onChangeText={onChangeText}
+      onSubmitEditing={onSubmitEditing}
     />
   );
 };
@@ -38,6 +39,7 @@ Input.PropTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChangeText: PropTypes.func.isRequired,
+  onSubmitEditing: PropTypes.func.isRequired,
 };
 
 export default Input;
