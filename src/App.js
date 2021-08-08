@@ -1,5 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { StatusBar } from 'react-native';
 import styled, { ThemeProvider } from 'styled-components/native';
 import { theme } from './theme';
 
@@ -24,7 +24,10 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Container>
         <Title>TODO List</Title>
-        <StatusBar style="auto" />
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor={theme.background}
+        />
       </Container>
     </ThemeProvider>
   );
