@@ -29,15 +29,9 @@ const List = styled.ScrollView`
 export default function App() {
   const width = Dimensions.get('window').width;
 
-  const tempData = {
-    1: { id: '1', text: 'React Native', compledted: false },
-    2: { id: '2', text: 'Expo', compledted: true },
-    3: { id: '3', text: 'JavaScript', compledted: false },
-  };
-
-  const [tasks, setTasks] = useState(tempData);
-
+  const [tasks, setTasks] = useState({});
   const [newTask, setNewTask] = useState('');
+
   const addTask = () => {
     if (newTask.length === 0) return;
 
