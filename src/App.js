@@ -2,6 +2,7 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import styled, { ThemeProvider } from 'styled-components/native';
 import { theme } from './theme';
+import Input from './components/Input';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -28,6 +29,7 @@ export default function App() {
           barStyle="light-content"
           backgroundColor={theme.background}
         />
+        <Input />
       </Container>
     </ThemeProvider>
   );
