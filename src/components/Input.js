@@ -18,7 +18,17 @@ const StyledInput = styled.TextInput.attrs(({ theme }) => ({
 const Input = ({ placeholder }) => {
   // const width = Dimensions.get('window').width;
   const width = useWindowDimensions().width;
-  return <StyledInput width={width} placeholder={placeholder} maxLength={50} />;
+  return (
+    <StyledInput
+      width={width}
+      placeholder={placeholder}
+      maxLength={50}
+      autoCapitalize="none"
+      autoCorrect={false}
+      returnKeyType="done"
+      keyboardAppearance="dark"
+    />
+  );
 };
 
 export default Input;
