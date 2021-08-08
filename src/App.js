@@ -4,6 +4,8 @@ import styled, { ThemeProvider } from 'styled-components/native';
 import { theme } from './theme';
 import Input from './components/Input';
 import Task from './components/Task';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import AppLoading from 'expo-app-loading';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -31,6 +33,21 @@ export default function App() {
 
   const [tasks, setTasks] = useState({});
   const [newTask, setNewTask] = useState('');
+  const [isReady, setIsReady] = useState(false);
+
+  const storeData = async tasks => {
+    try {
+      await AsyncStorage.setItem('tasks', JSON.stringify(tasks));
+      setTasks(tasks);
+    } catch (e) {
+      //
+    }
+  };
+
+  const getData = async () => {
+    const loadedData = await AsyncStorage.getItem('tasks');
+    setTasks(JSON.parse(loadedData || '{}'));
+  };
 
   const addTask = () => {
     if (newTask.length === 0) return;
@@ -40,28 +57,28 @@ export default function App() {
       [ID]: { id: ID, text: newTask, compledted: false },
     };
     setNewTask('');
-    setTasks({ ...tasks, ...newTaskObject });
+    storeData({ ...tasks, ...newTaskObject });
   };
 
   const deleteTask = id => {
     const currentTasks = Object.assign({}, tasks);
     delete currentTasks[id];
-    setTasks(currentTasks);
+    storeData(currentTasks);
   };
 
   const toggleTask = id => {
     const currentTasks = Object.assign({}, tasks);
     currentTasks[id]['compledted'] = !currentTasks[id]['compledted'];
-    setTasks(currentTasks);
+    storeData(currentTasks);
   };
 
   const updateTask = item => {
     const currentTasks = Object.assign({}, tasks);
     currentTasks[item.id] = item;
-    setTasks(currentTasks);
+    storeData(currentTasks);
   };
 
-  return (
+  return isReady ? (
     <ThemeProvider theme={theme}>
       <Container>
         <Title>TODO List</Title>
@@ -91,5 +108,11 @@ export default function App() {
         </List>
       </Container>
     </ThemeProvider>
+  ) : (
+    <AppLoading
+      startAsync={getData}
+      onFinish={() => setIsReady(true)}
+      onError={() => {}}
+    />
   );
 }
