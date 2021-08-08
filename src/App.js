@@ -29,7 +29,7 @@ export default function App() {
           barStyle="light-content"
           backgroundColor={theme.background}
         />
-        <Input />
+        <Input placeholder="+ Add a Task" />
       </Container>
     </ThemeProvider>
   );
